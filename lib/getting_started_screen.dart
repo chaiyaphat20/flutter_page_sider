@@ -5,6 +5,9 @@ import 'package:flutter_page_slider_carousel/components/TextButtonCustom.dart';
 import 'package:flutter_page_slider_carousel/components/silde_item.dart';
 import 'package:flutter_page_slider_carousel/components/slide_dots.dart';
 import 'package:flutter_page_slider_carousel/models/slide.dart';
+import 'package:flutter_page_slider_carousel/pages/Screen1.dart';
+import 'package:flutter_page_slider_carousel/pages/Screen2.dart';
+import 'package:flutter_page_slider_carousel/pages/Screen3.dart';
 
 class GettingStartedScreen extends StatefulWidget {
   const GettingStartedScreen({super.key});
@@ -48,6 +51,13 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
     });
   }
 
+  //change page
+  final slideList = [const Screen1(), const Screen2(), const Screen3()];
+
+  Widget controllerPage(int index) {
+    return slideList[index];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +76,8 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
                       onPageChanged:
                           _onPageChanged, // set ว่า เลื่อน อยู่ page ไหนแล้ว
                       controller: _pageController,
-                      itemBuilder: (ctx, index) => SliderItem(index),
+                      // itemBuilder: (ctx, index) => SliderItem(index),
+                      itemBuilder: (ctx, index) => controllerPage(index),
                       itemCount: slideList.length,
                     ),
                     Stack(
